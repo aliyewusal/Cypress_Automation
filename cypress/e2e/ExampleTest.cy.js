@@ -1,5 +1,6 @@
 describe('Amazon Test', () => {
     it('Search for Samsung TV and assert product details', () => {
+        //Waits applied to bypass Amazon web scraping detection
         cy.visit('https://www.amazon.com/')
         cy.wait(2000)
         cy.get('#nav-hamburger-menu').click()
