@@ -1,4 +1,7 @@
 describe('Amazon Test', () => {
+    before(() => {
+        cy.screenshot('my-screenshot');
+    })
     it('Search for Samsung TV and assert product details', () => {
         //Waits applied to bypass Amazon web scraping detection
         cy.visit('https://www.amazon.com/')
