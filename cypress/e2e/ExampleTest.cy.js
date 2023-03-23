@@ -37,16 +37,8 @@ describe('Amazon Test', () => {
         cy.wait(2000);
         cy.get('#landingImage')
             .should('be.visible');
-        cy.get('#productTitle')
-            .invoke('text')
-            .then((productName) => {
-                console.log(`Product name: ${productName}`)
-            });
+        cy.getProductTitle();
         cy.wait(2000)
-        cy.get('#feature-bullets')
-            .invoke('text')
-            .then((productDesc) => {
-                console.log(`Product description: ${productDesc}`)
-            });
+        cy.getProductDescription();
     });
 });
