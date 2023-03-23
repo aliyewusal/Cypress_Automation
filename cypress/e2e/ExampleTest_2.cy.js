@@ -15,8 +15,7 @@ describe('Amazon Test - Sign in with wrong email', function() {
         cy.get('a[data-nav-ref="nav_ya_signin"]')
             .click();
         cy.wait(2000);
-        cy.get('#ap_email')
-            .type(this.data.email);
+        cy.enterEmail(this.data.email);
         cy.wait(2000);
         cy.get('#continue')
             .click();
