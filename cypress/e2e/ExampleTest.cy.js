@@ -1,42 +1,37 @@
+import HomePage from '../e2e/integration/examples/pageObjacts/homePage'
+import TVAndVideo from '../e2e/integration/examples/pageObjacts/tvAndVidoePage'
+import ProductPage from '../e2e/integration/examples/pageObjacts/productPage'
+
 describe('Amazon Test', () => {
     before(() => {
+        //Screenshot practically does nothing , added to display function on before hook
         cy.screenshot('my-screenshot');
     })
     it('Search for Samsung TV and assert product details', () => {
+        const homePage = new HomePage();
+        const tvAndVideoPage = new TVAndVideo();
+        const productPage = new ProductPage
+
         //Waits applied to bypass Amazon web scraping detection
         cy.visit('https://www.amazon.com/');
         cy.wait(2000);
-        cy.get('#nav-hamburger-menu')
-            .click();
+        homePage.getHamburger().click();
         cy.wait(2000)
-        cy.get('a[data-menu-id="5"]')
-            .contains('Electronics')
-            .click();
+        homePage.getElectronicsFromHamburger().click();
         cy.wait(2000)
-        cy.contains('Television & Video')
-            .click();
+        homePage.getTvAndVideoFromElectronics().click();
         cy.wait(2000)
-        cy.get('span.a-size-base.a-color-base')
-            .contains('Televisions')
-            .click();
+        tvAndVideoPage.getDepartmentTV().click();
         cy.wait(2000)
-        cy.get('#brandsRefinements')
-            .contains('SAMSUNG')
-            .click();
+        tvAndVideoPage.getBrandSamsung().click();
         cy.wait(2000);
-        cy.get('span[aria-label="Sort by:"]')
-            .click();
+        tvAndVideoPage.getSortBy().click();
         cy.wait(2000);
-        cy.get('li.a-dropdown-item')
-            .contains('Price: High to Low')
-            .click();
+        tvAndVideoPage.getPriceHighToLow().click();
         cy.wait(2000);
-        cy.get('.s-image')
-            .first()
-            .click();
+        tvAndVideoPage.getFirstProductImage().click();
         cy.wait(2000);
-        cy.get('#landingImage')
-            .should('be.visible');
+        productPage.getProductImage().should('be.visible');
         cy.getProductTitle();
         cy.wait(2000)
         cy.getProductDescription();
